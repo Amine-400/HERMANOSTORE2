@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vêtements Sportifs</title>
+  <style>
+    body { font-family: sans-serif; background: #f9f9f9; margin: 0; }
+    header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px; }
+    .product { background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; }
+    .product img { width: 100%; height: 250px; object-fit: cover; }
+    .product h3 { padding: 10px; text-align: center; }
+    .add-to-cart-btn, .buy-now-btn { width: 100%; padding: 10px; margin: 5px 0; border: none; cursor: pointer; }
+    .add-to-cart-btn { background-color: #28a745; color: white; }
+    .buy-now-btn { background-color: #007bff; color: white; }
+  </style>
+
+  <div class="cart-icon">
+    <a href="cart.html">
+      <img src="cart-icon.png" alt="Cart">
+      <span id="cart-count">0</span>
+    </a>
+  </div>
+
+<script>
+  // Initialize cart from sessionStorage
+  let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
+  updateCartCount();
+
+  function addToCart(productName, productPrice) {
+    cart.push({name: productName, price: productPrice});
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  function updateCartCount() {
+    let count = cart.length;
+    document.getElementById('cart-count').textContent = count;
+  }
+</script>
+</head>
+<body>
+
+  <div class="cart-icon">
+    <a href="cart.html">
+      <img src="cart-icon.png" alt="Cart">
+      <span id="cart-count">0</span>
+    </a>
+  </div>
+
+  <header>
+    <h1>Vêtements Sportifs</h1>
+  </header>
+  <div class="products">
+    <div class="product">
+      <img src="vetement1.jpg" alt="Vêtement 1">
+      <h3>Vêtement Sport 1</h3>
+      <button class="add-to-cart-btn" onclick="addToCart('Vêtement Sport 1', 40)">Ajouter au Panier</button>
+      <button class="buy-now-btn" onclick="window.location.href='checkout.html'">Acheter maintenant</button>
+    </div>
+    <div class="product">
+      <img src="vetement2.jpg" alt="Vêtement 2">
+      <h3>Vêtement Sport 2</h3>
+      <button class="add-to-cart-btn" onclick="addToCart('Vêtement Sport 2', 45)">Ajouter au Panier</button>
+      <button class="buy-now-btn" onclick="window.location.href='checkout.html'">Acheter maintenant</button>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2025 Hermanostore</p>
+  </footer>
+</body>
+</html>
