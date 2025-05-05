@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HERMANOSTORE</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-MV+XY5S1cwDCUXOx8RZST2U8kMj0TWqYkRvCz0jk8F9SkKZ9HcFb/l1HZ2j8u2wGv0CkDcYzqf1U2E3PRv0K8g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  
   <style>
     * {
       box-sizing: border-box;
@@ -184,38 +182,9 @@
     }
   </style>
 
-  <div class="cart-icon">
-    <a href="cart.html">
-      <img src="cart-icon.png" alt="Cart">
-      <span id="cart-count">0</span>
-    </a>
-  </div>
-
-<script>
-  // Initialize cart from sessionStorage
-  let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-  updateCartCount();
-
-  function addToCart(productName, productPrice) {
-    cart.push({name: productName, price: productPrice});
-    sessionStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-  }
-
-  function updateCartCount() {
-    let count = cart.length;
-    document.getElementById('cart-count').textContent = count;
-  }
-</script>
+<script src="./script.js"></script>
 </head>
 <body>
-
-  <div class="cart-icon">
-    <a href="cart.html">
-      <img src="cart-icon.png" alt="Cart">
-      <span id="cart-count">0</span>
-    </a>
-  </div>
 
   <header>
     <img src="https://i.ibb.co/TXNGd8P/20240724-213250-0000.png" alt="Logo" class="logo">
@@ -225,10 +194,10 @@
       <div class="marquee-text">توصيل إلى جميع ربوع المملكة في غضون 24 ساعة</div>
     </div>
     <!-- Cart button -->
-    <div class="cart-container" id="cart-container">
+    <a href="cart.html" class="cart-container" id="cart-container">
       <i class="fa fa-shopping-cart"></i>
       <div class="cart-count" id="cart-count">0</div>
-    </div>
+    </a>
   </header>
 
   <div class="sections">
@@ -246,7 +215,6 @@
     </a>
   </div>
 
-  <!-- Floating WhatsApp & Instagram Buttons with App Names -->
   <div class="floating-buttons">
     <a href="https://wa.me/212600000000" target="_blank" title="Contactez-nous sur WhatsApp">
       WhatsApp
@@ -260,19 +228,5 @@
     <p>&copy; 2025 Boutique Sportive. Tous droits réservés.</p>
   </footer>
 
-  <script>
-    let cart = [];
-    
-    function addToCart(productName, productPrice) {
-      cart.push({ name: productName, price: productPrice });
-      updateCartDisplay();
-    }
-
-    function updateCartDisplay() {
-      document.getElementById('cart-count').innerText = cart.length;
-      const total = cart.reduce((sum, item) => sum + item.price, 0);
-      document.getElementById('cart-container').title = Total: ${total} MAD;
-    }
-  </script>
 </body>
 </html>

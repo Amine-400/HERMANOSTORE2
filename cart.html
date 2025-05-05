@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mon Panier</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="script.js" defer></script>
+  <style>
+    .cart-items {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    .cart-item button {
+      background-color: crimson;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: fit-content;
+    }
+    .total {
+      text-align: right;
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    .checkout-btn {
+      display: block;
+      margin: 30px auto 0;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      width: fit-content;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://i.ibb.co/TXNGd8P/20240724-213250-0000.png" alt="Logo" class="logo">
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="chaussures.html">Chaussures</a>
+      <a href="vetements.html">Vêtements</a>
+      <a href="casquettes.html">Casquettes</a>
+    </nav>
+    <div class="cart-container">
+      <i class="fa fa-shopping-cart"></i>
+      <div class="cart-count" id="cart-count">0</div>
+    </div>
+  </header>
+
+  <div class="cart-items" id="cart-items">
+    <h2>Votre Panier</h2>
+    <!-- Items here -->
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Hermanostore</p>
+  </footer>
+
+  <script>
+    const container = document.getElementById("cart-items");
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function renderCart() {
+      container.innerHTML = "<h2>Votre Panier</h2>";
+      if (cart.length === 0) {
+        container.innerHTML += "<p>Votre panier est vide.</p>";
+        return;
+      }
+
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <span>${item.name}</span>
+          <span>${item.price} DH</span>
+          <button onclick="removeItem(${index})">Supprimer</button>
+        `;
+        container.appendChild(div);
+      });
+
+      const totalDiv = document.createElement("div");
+      totalDiv.className = "total";
+      totalDiv.textContent = `Total : ${total} DH`;
+      container.appendChild(totalDiv);
+
+      const checkoutBtn = document.createElement("a");
+      checkoutBtn.href = "checkout.html";
+      checkoutBtn.className = "checkout-btn";
+      checkoutBtn.textContent = "Passer à l'achat";
+      container.appendChild(checkoutBtn);
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+      updateCartCount();
+    }
+
+    document.addEventListener("DOMContentLoaded", renderCart);
+  </script>
+</body>
+</html>

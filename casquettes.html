@@ -3,69 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Accessoires</title>
-  <style>
-    body { font-family: sans-serif; background: #f9f9f9; margin: 0; }
-    header, footer { background: #111; color: #fff; text-align: center; padding: 20px; }
-    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px; }
-    .product { background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; }
-    .product img { width: 100%; height: 250px; object-fit: cover; }
-    .product h3 { padding: 10px; text-align: center; }
-    .add-to-cart-btn, .buy-now-btn { width: 100%; padding: 10px; margin: 5px 0; border: none; cursor: pointer; }
-    .add-to-cart-btn { background-color: #28a745; color: white; }
-    .buy-now-btn { background-color: #007bff; color: white; }
-  </style>
-
-  <div class="cart-icon">
-    <a href="cart.html">
-      <img src="cart-icon.png" alt="Cart">
-      <span id="cart-count">0</span>
-    </a>
-  </div>
-
-<script>
-  // Initialize cart from sessionStorage
-  let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
-  updateCartCount();
-
-  function addToCart(productName, productPrice) {
-    cart.push({name: productName, price: productPrice});
-    sessionStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-  }
-
-  function updateCartCount() {
-    let count = cart.length;
-    document.getElementById('cart-count').textContent = count;
-  }
-</script>
+  <title>casquettess Sportives</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="./script.js" defer></script>
 </head>
 <body>
-
-  <div class="cart-icon">
-    <a href="cart.html">
-      <img src="cart-icon.png" alt="Cart">
-      <span id="cart-count">0</span>
-    </a>
-  </div>
-
   <header>
-    <h1>Casquettes</h1>
+    <img src="https://i.ibb.co/TXNGd8P/20240724-213250-0000.png" alt="Logo" class="logo">
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="casquettess.html">casquettess</a>
+      <a href="casquettess.html">Vêtements</a>
+      <a href="casquettes.html">Casquettes</a>
+    </nav>
+    <div class="cart-container">
+      <i class="fa fa-shopping-cart"></i>
+      <div class="cart-count" id="cart-count">0</div>
+    </div>
   </header>
+
   <div class="products">
     <div class="product">
-      <img src="casquette1.jpg" alt="Casquette 1">
-      <h3>Casquette Style 1</h3>
-      <button class="add-to-cart-btn" onclick="addToCart('Casquette Style 1', 20)">Ajouter au Panier</button>
+      <img src="../assets/images/casquettes1.jpg" alt="casquettes 1">
+      <h3>casquettes Sport 1</h3>
+      <button class="add-to-cart-btn" onclick="addToCart('casquettes Sport 1', 50)">Ajouter au Panier</button>
       <button class="buy-now-btn" onclick="window.location.href='checkout.html'">Acheter maintenant</button>
     </div>
     <div class="product">
-      <img src="casquette2.jpg" alt="Casquette 2">
-      <h3>Casquette Style 2</h3>
-      <button class="add-to-cart-btn" onclick="addToCart('Casquette Style 2', 25)">Ajouter au Panier</button>
+      <img src="../assets/images/casquettes2.jpg" alt="casquettes 2">
+      <h3>casquettes Sport 2</h3>
+      <button class="add-to-cart-btn" onclick="addToCart('casquettes Sport 2', 60)">Ajouter au Panier</button>
       <button class="buy-now-btn" onclick="window.location.href='checkout.html'">Acheter maintenant</button>
     </div>
   </div>
+
   <footer>
     <p>&copy; 2025 Hermanostore</p>
   </footer>
