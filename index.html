@@ -283,6 +283,69 @@
     .section.centree-bas {
       grid-column: 2;
     }
+
+    .burger-icon {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #FFD700;
+      z-index: 1001;
+    }
+
+    .burger-menu {
+      display: none;
+      position: absolute;
+      top: 110px;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      z-index: 999;
+    }
+    
+    .burger-menu ul {
+      list-style: none;
+    }
+    
+    .burger-menu .menu-item {
+      font-weight: bold;
+      color: #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      transition: color 0.3s ease;
+    }
+    
+    .burger-menu .menu-item:hover {
+      color: #FFD700;
+    }
+    
+    .sub-menu {
+      list-style: none;
+      padding-left: 20px;
+      margin-top: 10px;
+      display: none;
+    }
+    
+    .sub-menu li {
+      padding: 6px 0;
+    }
+    
+    .sub-menu a {
+      text-decoration: none;
+      color: #444;
+      transition: color 0.3s ease;
+    }
+    
+    .sub-menu a:hover {
+      color: #FFD700;
+    }
     
   </style>
 </head>
@@ -291,6 +354,11 @@
 
   <header>
     <img src="https://i.ibb.co/TXNGd8P/20240724-213250-0000.png" alt="Logo" class="logo">
+
+    <div id="burger-icon" onclick="toggleMenu()" class="burger-icon">
+      <i class="fas fa-bars"></i>
+    </div>
+
     <div class="marquee-container">
       <div class="marquee-text">HERMANOSTORE</div>
       <div class="marquee-text">Découvrez nos catégories exclusives</div>
@@ -302,6 +370,51 @@
       <div class="cart-count" id="cart-count">0</div>
     </a>
   </header>
+
+  <nav id="burger-menu" class="burger-menu">
+    <ul>
+      <li>
+        <div class="menu-item" onclick="toggleSubMenu(this)">
+          Chaussures
+          <i class="fas fa-chevron-down" id="chevron-icon"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="chaussures.html?brand=nike">Nike</a></li>
+          <li><a href="chaussures.html?brand=adidas">Adidas</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="menu-item" onclick="toggleSubMenu(this)">
+          Vêtements
+          <i class="fas fa-chevron-down" id="chevron-icon"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="vetements.html?brand=nike">Nike</a></li>
+          <li><a href="vetements.html?brand=adidas">Adidas</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="menu-item" onclick="toggleSubMenu(this)">
+          Casquettes
+          <i class="fas fa-chevron-down" id="chevron-icon"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="casquettes.html?brand=nike">Nike</a></li>
+          <li><a href="casquettes.html?brand=adidas">Adidas</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="menu-item" onclick="toggleSubMenu(this)">
+          Sandales
+          <i class="fas fa-chevron-down" id="chevron-icon"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="sandales.html?brand=nike">Nike</a></li>
+          <li><a href="sandales.html?brand=adidas">Adidas</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
 
   <div class="top-banner">
     <p>🚚 Livraison gratuite à partir de 499 DHS !</p>
@@ -333,9 +446,9 @@
         <img src="https://i.ibb.co/JWC55xC3/4b3335bc-f53f-4cfe-9ba4-79de478131e1.jpg" alt="Casquettes">
         <h2>Casquettes</h2>
       </a>
-      <a href="casquettes.html" class="section centree-bas">
-        <img src="https://i.ibb.co/JWC55xC3/4b3335bc-f53f-4cfe-9ba4-79de478131e1.jpg" alt="Casquettes">
-        <h2>Casquettes</h2>
+      <a href="sandales.html" class="section centree-bas">
+        <img src="https://i.ibb.co/JWC55xC3/4b3335bc-f53f-4cfe-9ba4-79de478131e1.jpg" alt="Sandales">
+        <h2>Sandales</h2>
       </a>
     </div>
   </div>

@@ -74,3 +74,38 @@ function animateLines() {
     requestAnimationFrame(animateLines);
 }
 animateLines();
+
+
+
+function filterByBrand() {
+    const selectedBrand = document.getElementById("brand-filter").value;
+    const products = document.querySelectorAll(".product");
+
+    products.forEach(product => {
+        const brand = product.getAttribute("data-brand");
+        if (selectedBrand === "all" || brand === selectedBrand) {
+            product.style.display = "block";
+        } else {
+            product.style.display = "none";
+        }
+    });
+}
+
+
+
+
+function toggleMenu() {
+    const menu = document.getElementById("burger-menu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+function toggleSubMenu(trigger) {
+    const submenu = trigger.nextElementSibling;
+    const chevron = trigger.querySelector(".chevron-icon");
+
+    const isOpen = submenu.style.display === "block";
+
+    submenu.style.display = isOpen ? "none" : "block";
+    chevron.classList.toggle("fa-chevron-down", isOpen);
+    chevron.classList.toggle("fa-chevron-up", !isOpen);
+}
