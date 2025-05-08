@@ -389,6 +389,41 @@
         filterByBrand(); 
       }
     });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const productContainer = document.querySelector(".products");
+  
+      fetch("https://fakestoreapi.com/products?limit=6")
+          .then(res => res.json())
+          .then(data => {
+              productContainer.innerHTML = ""; 
+  
+              data.forEach(product => {
+                  const brand = product.category.includes("men") ? "nike" : "adidas";
+  
+                  const card = document.createElement("div");
+                  card.className = "product";
+                  card.setAttribute("data-brand", brand);
+  
+                  card.innerHTML = `
+              <img src="${product.image}" alt="${product.title}">
+              <h3>${product.title.slice(0, 25)}...</h3>
+              <button class="add-to-cart-btn" onclick="addToCart('${product.title}', ${product.price})">
+                Ajouter au Panier
+              </button>
+              <button class="buy-now-btn" onclick="window.location.href='checkout.html'">
+                Acheter maintenant
+              </button>
+            `;
+  
+                  productContainer.appendChild(card);
+              });
+          })
+          .catch(error => {
+              console.error("Erreur API :", error);
+              productContainer.innerHTML = "<p>Impossible de charger les produits.</p>";
+          });
+  });
   </script>
 
 </body>
