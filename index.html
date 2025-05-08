@@ -6,7 +6,8 @@
   <title>HERMANOSTORE</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-MV+XY5S1cwDCUXOx8RZST2U8kMj0TWqYkRvCz0jk8F9SkKZ9HcFb/l1HZ2j8u2wGv0CkDcYzqf1U2E3PRv0K8g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
     * {
       box-sizing: border-box;
@@ -212,7 +213,7 @@
     .hero-slider {
       position: relative;
       width: 100%;
-      height: 47rem;
+      height: 30rem;
       overflow: hidden;
     }
     
@@ -232,7 +233,7 @@
     
     .hero-slider img {
       width: 100%;
-      height: 47rem;
+      height: 30rem;
       object-fit: cover;
     }
     
@@ -270,7 +271,7 @@
       z-index: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to bottom, #faf7eb, #575555); /* light mode */
+      background: linear-gradient(to bottom, #faf7eb, #575555);
     }
     
     .sections {
@@ -284,7 +285,6 @@
 
 <body>
 
-
   <header>
     <img src="https://i.ibb.co/TXNGd8P/20240724-213250-0000.png" alt="Logo" class="logo">
     <div class="marquee-container">
@@ -292,9 +292,9 @@
       <div class="marquee-text">Découvrez nos catégories exclusives</div>
       <div class="marquee-text">توصيل إلى جميع ربوع المملكة في غضون 24 ساعة</div>
     </div>
-    <!-- Cart button -->
+    
     <a href="cart.html" class="cart-container" id="cart-container">
-      <i class="fa fa-shopping-cart"></i>
+      <i class="fa fa-shopping-cart" style="color: #000;"></i>
       <div class="cart-count" id="cart-count">0</div>
     </a>
   </header>
@@ -305,16 +305,12 @@
 
   <section class="hero-slider">
     <div class="slide active">
-      <img src="images/slider1.png" alt="Image 1">
+      <img src="images/slider1.jpeg" alt="Image 1">
       <div class="overlay-text">Bonjour chez HERMANOSTORE</div>
     </div>
     <div class="slide">
-      <img src="images/slider2.png" alt="Image 2">
+      <img src="images/slider2.jpeg" alt="Image 2">
       <div class="overlay-text">Explore nos collections sportives</div>
-    </div>
-    <div class="slide">
-      <img src="images/slider3.png" alt="Image 3">
-      <div class="overlay-text">Livraison gratuite dès 499 DHS</div>
     </div>
   </section>
 

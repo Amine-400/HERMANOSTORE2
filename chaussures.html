@@ -4,10 +4,189 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chaussures Sportives</title>
-  <link rel="stylesheet" href="main.css">
-  <script src="./script.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-MV+XY5S1cwDCUXOx8RZST2U8kMj0TWqYkRvCz0jk8F9SkKZ9HcFb/l1HZ2j8u2wGv0CkDcYzqf1U2E3PRv0K8g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #111;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .logo {
+      height: 40px;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 12px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #FFD700;
+    }
+
+    .cart-container {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      background-color: #FFD700;
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 20px;
+      color: #111;
+      cursor: pointer;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: red;
+      color: white;
+      font-size: 12px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 20px;
+    }
+
+    .top-banner {
+      background: linear-gradient(to right, #FFD700, #ffcc00);
+      color: #111;
+      text-align: center;
+      height: 36px;
+      line-height: 36px;
+      font-weight: bold;
+      font-size: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .top-banner p {
+      display: inline-block;
+      animation: pulseText 2s ease-in-out infinite;
+      margin: 0;
+      padding: 0 10px;
+    }
+    
+    @keyframes pulseText {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }   
+
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      padding: 50px;
+    }
+
+    .product {
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .product h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .add-to-cart-btn,
+    .buy-now-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 5px;
+      font-weight: bold;
+      font-size: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .add-to-cart-btn {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: #218838;
+    }
+
+    .buy-now-btn {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .buy-now-btn:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .products {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+
   <header>
     <img src="https://i.ibb.co/TXNGd8P/20240724-213250-0000.png" alt="Logo" class="logo">
     <nav>
@@ -16,11 +195,16 @@
       <a href="vetements.html">Vêtements</a>
       <a href="casquettes.html">Casquettes</a>
     </nav>
-    <a href="cart.html" class="cart-container">
-      <i class="fa fa-shopping-cart"></i>
+
+    <a href="cart.html" class="cart-container" id="cart-container">
+      <i class="fa fa-shopping-cart" style="color: #000;"></i>
       <div class="cart-count" id="cart-count">0</div>
     </a>
   </header>
+
+  <div class="top-banner">
+    <p>🚚 Livraison gratuite à partir de 499 DHS !</p>
+  </div>
 
   <div class="products">
     <div class="product">
@@ -38,7 +222,10 @@
   </div>
 
   <footer>
-    <p>&copy; 2025 Hermanostore</p>
+    <p>&copy; 2025 Hermanostore. Tous droits réservés.</p>
   </footer>
+
+  <script src="script.js" defer></script>
+
 </body>
 </html>
