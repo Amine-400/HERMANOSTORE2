@@ -17,6 +17,37 @@
       font-family: 'Roboto', sans-serif;
     }
 
+    .marquee-container {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      overflow: hidden;
+      height: 30px;
+    }
+
+    .marquee-text {
+      position: absolute;
+      width: 100%;
+      white-space: nowrap;
+      font-size: 20px;
+      color: #FFD700;
+      text-shadow: 1px 1px 2px black;
+      opacity: 0;
+      animation: slideText 12s ease-in-out infinite;
+    }
+
+    .marquee-text:nth-child(1) { animation-delay: 0s; }
+    .marquee-text:nth-child(2) { animation-delay: 4s; }
+    .marquee-text:nth-child(3) { animation-delay: 8s; }
+
+    @keyframes slideText {
+      0%   { left: 100%; opacity: 1; }
+      20%  { left: 50%; transform: translateX(-50%); opacity: 1; }
+      30%  { left: 50%; transform: translateX(-50%); opacity: 1; }
+      50%  { left: -100%; opacity: 0; }
+      100% { left: -100%; opacity: 0; }
+    }
+
     body {
       background-color: #f9f9f9;
       color: #333;
@@ -25,9 +56,11 @@
     header {
       background-color: #111;
       color: white;
-      padding: 10px 20px;
       text-align: center;
       position: relative;
+      overflow: hidden;
+      height: 110px;
+      padding-top: 10px;
     }
 
     .logo {
@@ -60,6 +93,69 @@
       font-size: 20px;
       color: #111;
       cursor: pointer;
+    }
+
+    .burger-icon {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #FFD700;
+      z-index: 1001;
+    }
+
+    .burger-menu {
+      display: none;
+      position: absolute;
+      top: 110px;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      z-index: 999;
+    }
+    
+    .burger-menu ul {
+      list-style: none;
+    }
+    
+    .burger-menu .menu-item {
+      font-weight: bold;
+      color: #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      transition: color 0.3s ease;
+    }
+    
+    .burger-menu .menu-item:hover {
+      color: #FFD700;
+    }
+    
+    .sub-menu {
+      list-style: none;
+      padding-left: 20px;
+      margin-top: 10px;
+      display: none;
+    }
+    
+    .sub-menu li {
+      padding: 6px 0;
+    }
+    
+    .sub-menu a {
+      text-decoration: none;
+      color: #444;
+      transition: color 0.3s ease;
+    }
+    
+    .sub-menu a:hover {
+      color: #FFD700;
     }
 
     .cart-count {
@@ -189,18 +285,67 @@
 
   <header>
     <img src="https://i.ibb.co/TXNGd8P/20240724-213250-0000.png" alt="Logo" class="logo">
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="chaussures.html">Chaussures</a>
-      <a href="vetements.html">Vêtements</a>
-      <a href="casquettes.html">Casquettes</a>
-    </nav>
 
+    <div id="burger-icon" onclick="toggleMenu()" class="burger-icon">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="marquee-container">
+      <div class="marquee-text">HERMANOSTORE</div>
+      <div class="marquee-text">Découvrez nos catégories exclusives</div>
+      <div class="marquee-text">توصيل إلى جميع ربوع المملكة في غضون 24 ساعة</div>
+    </div>
+    
     <a href="cart.html" class="cart-container" id="cart-container">
       <i class="fa fa-shopping-cart" style="color: #000;"></i>
       <div class="cart-count" id="cart-count">0</div>
     </a>
   </header>
+
+  <nav id="burger-menu" class="burger-menu">
+    <ul>
+      <li>
+        <div class="menu-item" onclick="toggleSubMenu(this)">
+          Chaussures
+          <i class="fas fa-chevron-down" id="chevron-icon"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="chaussures.html?brand=nike">Nike</a></li>
+          <li><a href="chaussures.html?brand=adidas">Adidas</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="menu-item" onclick="toggleSubMenu(this)">
+          Vêtements
+          <i class="fas fa-chevron-down" id="chevron-icon"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="vetements.html?brand=nike">Nike</a></li>
+          <li><a href="vetements.html?brand=adidas">Adidas</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="menu-item" onclick="toggleSubMenu(this)">
+          Casquettes
+          <i class="fas fa-chevron-down" id="chevron-icon"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="casquettes.html?brand=nike">Nike</a></li>
+          <li><a href="casquettes.html?brand=adidas">Adidas</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="menu-item" onclick="toggleSubMenu(this)">
+          Sandales
+          <i class="fas fa-chevron-down" id="chevron-icon"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="sandales.html?brand=nike">Nike</a></li>
+          <li><a href="sandales.html?brand=adidas">Adidas</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
 
   <div class="top-banner">
     <p>🚚 Livraison gratuite à partir de 499 DHS !</p>
@@ -212,7 +357,6 @@
       <option value="all">Toutes les marques</option>
       <option value="nike">Nike</option>
       <option value="adidas">Adidas</option>
-      <option value="puma">Puma</option>
     </select>
   </div>
 
@@ -243,7 +387,7 @@
       const brand = params.get("brand");
       if (brand) {
         document.getElementById("brand-filter").value = brand;
-        filterByBrand(); // appel de la fonction de filtre que tu avais déjà
+        filterByBrand(); 
       }
     });
   </script>
