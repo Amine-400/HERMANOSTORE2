@@ -109,3 +109,4 @@ function toggleSubMenu(trigger) {
     chevron.classList.toggle("fa-chevron-down", isOpen);
     chevron.classList.toggle("fa-chevron-up", !isOpen);
 }
+

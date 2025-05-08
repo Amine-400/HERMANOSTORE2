@@ -5,22 +5,423 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Page d'achat</title>
   <link rel="stylesheet" href="main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-MV+XY5S1cwDCUXOx8RZST2U8kMj0TWqYkRvCz0jk8F9SkKZ9HcFb/l1HZ2j8u2wGv0CkDcYzqf1U2E3PRv0K8g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      height: 110px;
+      padding-top: 10px;
+    }
+
+    .logo {
+      height: 40px;
+      margin-bottom: 10px;
+    }
+
+    .cart-container {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      background-color: #FFD700;
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-container:hover {
+      background-color: #ffcc00;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: red;
+      color: white;
+      font-size: 12px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      text-align: center;
+    }
+
+    .marquee-container {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      overflow: hidden;
+      height: 30px;
+    }
+
+    .marquee-text {
+      position: absolute;
+      width: 100%;
+      white-space: nowrap;
+      font-size: 20px;
+      color: #FFD700;
+      text-shadow: 1px 1px 2px black;
+      opacity: 0;
+      animation: slideText 12s ease-in-out infinite;
+    }
+
+    .marquee-text:nth-child(1) { animation-delay: 0s; }
+    .marquee-text:nth-child(2) { animation-delay: 4s; }
+    .marquee-text:nth-child(3) { animation-delay: 8s; }
+
+    @keyframes slideText {
+      0%   { left: 100%; opacity: 1; }
+      20%  { left: 50%; transform: translateX(-50%); opacity: 1; }
+      30%  { left: 50%; transform: translateX(-50%); opacity: 1; }
+      50%  { left: -100%; opacity: 0; }
+      100% { left: -100%; opacity: 0; }
+    }
+
+    .sections {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      padding: 40px;
+    }
+
+    .section {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.3s ease;
+    }
+
+    .section:hover {
+      transform: scale(1.03);
+    }
+
+    .section img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .section h2 {
+      padding: 20px;
+      font-size: 24px;
+    }
+
+    footer {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .sections {
+        padding: 20px;
+      }
+
+      .section h2 {
+        font-size: 20px;
+      }
+    }
+
+    .floating-buttons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .floating-buttons a {
+      width: 120px;
+      height: 50px;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #25D366;
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .floating-buttons a.instagram {
+      background-color: #E4405F;
+    }
+
+    .floating-buttons a:hover {
+      transform: scale(1.1);
+    }
+
+    .top-banner {
+      background: linear-gradient(to right, #FFD700, #ffcc00);
+      color: #111;
+      text-align: center;
+      height: 36px;
+      line-height: 36px;
+      font-weight: bold;
+      font-size: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .top-banner p {
+      display: inline-block;
+      animation: pulseText 2s ease-in-out infinite;
+      margin: 0;
+      padding: 0 10px;
+    }
+    
+    @keyframes pulseText {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }   
+    
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      height: 30rem;
+      overflow: hidden;
+    }
+    
+    .hero-slider .slide {
+      position: absolute;
+      width: 100%;
+      height: fit-content;
+      opacity: 0;
+      z-index: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    
+    .hero-slider .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+    
+    .hero-slider img {
+      width: 100%;
+      height: 30rem;
+      object-fit: cover;
+    }
+    
+    .overlay-text {
+      position: absolute;
+      bottom: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.4);
+      color: #FFD700;
+      padding: 20px 40px;
+      font-size: 36px;
+      font-weight: bold;
+      border-radius: 12px;
+      text-align: center;
+      text-shadow: 2px 2px 5px #000;
+    }    
+    
+    .sections {
+      position: relative;
+      z-index: 1;
+      padding: 40px;
+    }
+
+    .energy-bg-wrapper {
+      position: relative;
+      overflow: hidden;
+      background-color: #fbf9f2;
+    }
+    
+    #energy-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, #faf7eb, #575555);
+    }
+    
+    .sections {
+      position: relative;
+      z-index: 1;
+      padding: 40px;
+    }
+
+    .section.centree-bas {
+      grid-column: 2;
+    }
+
+    .burger-icon {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #FFD700;
+      z-index: 1001;
+    }
+
+    .burger-menu {
+      display: none;
+      position: absolute;
+      top: 110px;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      z-index: 999;
+    }
+    
+    .burger-menu ul {
+      list-style: none;
+    }
+    
+    .burger-menu .menu-item {
+      font-weight: bold;
+      color: #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      transition: color 0.3s ease;
+    }
+    
+    .burger-menu .menu-item:hover {
+      color: #FFD700;
+    }
+    
+    .sub-menu {
+      list-style: none;
+      padding-left: 20px;
+      margin-top: 10px;
+      display: none;
+    }
+    
+    .sub-menu li {
+      padding: 6px 0;
+    }
+    
+    .sub-menu a {
+      text-decoration: none;
+      color: #444;
+      transition: color 0.3s ease;
+    }
+    
+    .sub-menu a:hover {
+      color: #FFD700;
+    }
+    
+  </style>
 </head>
+
 <body>
   <header>
     <img src="https://i.ibb.co/TXNGd8P/20240724-213250-0000.png" alt="Logo" class="logo">
-    <nav>
-      <nav>
-        <a href="index.html">Accueil</a>
-        <a href="chaussures.html">Chaussures</a>
-        <a href="vetements.html">Vêtements</a>
-        <a href="casquettes.html">Casquettes</a>
-      </nav>
-    <a href="cart.html" class="cart-container">
-      <i class="fa fa-shopping-cart"></i>
+
+    <div id="burger-icon" onclick="toggleMenu()" class="burger-icon">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="marquee-container">
+      <div class="marquee-text">HERMANOSTORE</div>
+      <div class="marquee-text">Découvrez nos catégories exclusives</div>
+      <div class="marquee-text">توصيل إلى جميع ربوع المملكة في غضون 24 ساعة</div>
+    </div>
+    
+    <a href="cart.html" class="cart-container" id="cart-container">
+      <i class="fa fa-shopping-cart" style="color: #000;"></i>
       <div class="cart-count" id="cart-count">0</div>
     </a>
   </header>
+
+  <nav id="burger-menu" class="burger-menu">
+    <ul>
+      <li><a href="index.html" class="menu-item" style="text-decoration: none;">Accueil</a></li>
+      <li><a href="cart.html" class="menu-item" style="text-decoration: none;">Panier</a></li>
+      <li>
+        <div class="menu-item" onclick="toggleSubMenu(this)">
+          Chaussures
+          <i class="fas fa-chevron-down" id="chevron-icon"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="chaussures.html?brand=nike">Nike</a></li>
+          <li><a href="chaussures.html?brand=adidas">Adidas</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="menu-item" onclick="toggleSubMenu(this)">
+          Vêtements
+          <i class="fas fa-chevron-down" id="chevron-icon"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="vetements.html?brand=nike">Nike</a></li>
+          <li><a href="vetements.html?brand=adidas">Adidas</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="menu-item" onclick="toggleSubMenu(this)">
+          Casquettes
+          <i class="fas fa-chevron-down" id="chevron-icon"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="casquettes.html?brand=nike">Nike</a></li>
+          <li><a href="casquettes.html?brand=adidas">Adidas</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="menu-item" onclick="toggleSubMenu(this)">
+          Sandales
+          <i class="fas fa-chevron-down" id="chevron-icon"></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a href="sandales.html?brand=nike">Nike</a></li>
+          <li><a href="sandales.html?brand=adidas">Adidas</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="top-banner">
+    <p>🚚 Livraison gratuite à partir de 499 DHS !</p>
+  </div>
 
   <div class="form-container">
     <h2>Informations de Livraison</h2>
@@ -33,6 +434,9 @@
 
       <label for="phone">Numéro de téléphone</label>
       <input type="tel" id="phone" required>
+
+      <label for="addresse">Adresse</label>
+      <input type="text" id="adresse" required>
       
       <button type="submit">Confirmer l'Achat</button>
     </form>
